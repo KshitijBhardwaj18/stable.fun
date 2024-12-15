@@ -1,16 +1,11 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Poppins } from "next/font/google";
 import "./globals.css";
+import { Header } from "@/components/header";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400","500","600", "700"], // You can specify the weights you need
 });
 
 export const metadata: Metadata = {
@@ -24,10 +19,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+    <html lang="en" className={`${poppins.className} bg-gradient-to-b from-[#444b1e] to-black`}>
+      <body 
+        className="bg-gradient-grid bg-[length:40px_40px] min-h-screen  relative"
+      > 
+        <Header/>
         {children}
       </body>
     </html>
